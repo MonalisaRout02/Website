@@ -33,13 +33,13 @@ function Modal({ showModal, handleClose, handleRequestOtp }) {
           />
           <button
             onClick={handleRequestOtpClick}
-            className="w-full py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600"
+            className="w-full py-2 px-4 bg-stone-500 text-white rounded-md hover:bg-stone-600"
           >
             Request OTP
           </button>
           <div className="text-center">
             <span className="text-gray-700">New user? </span>
-            <a href="#" className="text-orange-500 hover:underline">Create Account</a>
+            <a href="#" className="text-stone-500 hover:underline">Create Account</a>
           </div>
         </div>
       </div>
