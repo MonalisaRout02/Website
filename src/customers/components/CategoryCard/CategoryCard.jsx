@@ -9,7 +9,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 function CategoryCard() {
   return (
-    <Card sx={{ maxWidth:170}}  className='border-2'>
+    <Card sx={{ maxWidth:170}}  className='border-1'>
       <CardMedia
         component="img"
         alt="category"
