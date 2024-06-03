@@ -16,7 +16,7 @@ function MegaMenu() {
   };
 
   return (
-    <div className="bg-[#fffbf8] py-2 relative">
+    <div className="bg-[#fffbf8] py-1 relative">
       <div className="container mx-auto flex justify-center space-x-8">
         {['GOLD', 'DIAMOND', 'NECKLACE', 'RINGS', 'BESTSELLER', 'ALL JEWELLERY', 'COLLECTIONS', 'WEDDING', 'GIFTING'].map((item) => (
           <a
