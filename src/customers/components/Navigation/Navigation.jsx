@@ -39,29 +39,6 @@ function Navigation() {
   };
 
   return (
-<<<<<<< HEAD
-    <div className='sticky top-0 z-10 w-full bg-stone-200'>
-      <nav className="bg-white w-full">
-        <div className="flex items-center justify-between py-2 bg-stone-200 w-full px-4">
-          
-          {/* Left Section: Logo and Title */}
-          <div className="flex items-center space-x-2">
-            <img src="saptosi_logo.png" alt="Logo" className="h-8 w-8" />
-            <span className="text-xl font-semibold text-gray-800">Saptosi Jewellers</span>
-          </div>
-
-          {/* Center Section: Search Bar */}
-          <div className="flex-grow max-w-xl mx-4">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search for Gold, Silver, Necklace..."
-                className="border rounded-sm py-1 px-4 pl-10 w-full focus:outline-none focus:ring-2 focus:ring-orange-100"
-              />
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <SearchIcon className="h-5 w-5 text-gray-400" />
-              </div>
-=======
     <div className='sticky top-0 z-10'>
       <nav className="bg-white sticky top-0 z-10">
         <div className="container mx-auto flex items-center justify-between py-1 bg-stone-200">
@@ -85,13 +62,12 @@ function Navigation() {
             />
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <SearchIcon className="h-5 w-5 text-gray-400" />
->>>>>>> 6f17cf734920e9d0837bbf038b7c003cdc7d793d
             </div>
           </div>
         </div>
 
           {/* Right Section: Conditional Links and Icons */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-7 mr-4">
             {!isSignedIn ? (
               <>
                 <a href="#" className="text-gray-700 hover:text-gray-900" onClick={handleIconClick}>
