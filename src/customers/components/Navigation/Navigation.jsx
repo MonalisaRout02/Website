@@ -39,13 +39,13 @@ function Navigation() {
   };
 
   return (
-    <div className='sticky top-0 z-10'>
-      <nav className="bg-white sticky top-0 z-10">
-        <div className="container mx-auto flex items-center justify-between py-2 bg-stone-200">
+    <div className='sticky top-0 z-10 w-full bg-stone-200'>
+      <nav className="bg-white w-full">
+        <div className="flex items-center justify-between py-2 bg-stone-200 w-full px-4">
           
           {/* Left Section: Logo and Title */}
           <div className="flex items-center space-x-2">
-            <img src="saptosi_logo.png" alt="Logo" className="h-8 w-8 ml-4" />
+            <img src="saptosi_logo.png" alt="Logo" className="h-8 w-8" />
             <span className="text-xl font-semibold text-gray-800">Saptosi Jewellers</span>
           </div>
 
@@ -55,7 +55,7 @@ function Navigation() {
               <input
                 type="text"
                 placeholder="Search for Gold, Silver, Necklace..."
-                className="border-1 rounded-sm py-1 px-4 pl-10 w-full focus:outline-none focus:ring-2 focus:ring-orange-100"
+                className="border rounded-sm py-1 px-4 pl-10 w-full focus:outline-none focus:ring-2 focus:ring-orange-100"
               />
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <SearchIcon className="h-5 w-5 text-gray-400" />
@@ -64,7 +64,7 @@ function Navigation() {
           </div>
 
           {/* Right Section: Conditional Links and Icons */}
-          <div className="flex items-center space-x-7 mr-4">
+          <div className="flex items-center space-x-4">
             {!isSignedIn ? (
               <>
                 <a href="#" className="text-gray-700 hover:text-gray-900" onClick={handleIconClick}>

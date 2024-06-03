@@ -10,6 +10,12 @@ const categoriesData = [
     { id: 8, name: 'Category 8', image: '/Images/Products/2.jpg' },
     { id: 9, name: 'Category 9', image: '/Images/Products/1.jpg' },
     { id: 10, name: 'Category 10', image: '/Images/Products/2.jpg' },
+    { id: 11, name: 'Category 5', image: '/Images/Products/1.jpg' },
+    { id: 12, name: 'Category 6', image: '/Images/Products/2.jpg' },
+    { id: 13, name: 'Category 7', image: '/Images/Products/1.jpg' },
+    { id: 14, name: 'Category 8', image: '/Images/Products/2.jpg' },
+    { id: 15, name: 'Category 9', image: '/Images/Products/1.jpg' },
+
     
     
     

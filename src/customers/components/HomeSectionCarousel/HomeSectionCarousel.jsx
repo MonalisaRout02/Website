@@ -42,11 +42,11 @@ const HomeSectionCarousel = ({sectionName}) => {
           onSlideChanged={syncActiveIndex}
           activeIndex={activeIndex}
           />
-        <Button variant="text" className='z-50 ml-2' onClick={slideNext}  sx={{position:"absolute",top:'10rem',right:"0rem",transform:"translateX(50%) rotate(90deg)", bgcolor:"white"}} aria-label='next'>
+        <Button variant="text" className=' ml-2' onClick={slideNext}  sx={{position:"absolute",top:'10rem',right:"0rem",transform:"translateX(50%) rotate(90deg)", bgcolor:"white"}} aria-label='next'>
             <KeyboardArrowLeftIcon sx={{transform:"rotate(90deg)",color:"black"}} />
         </Button>
 
-        <Button variant="text" className='z-50 ml-2' onClick={slidePrev}sx={{position:"absolute",top:'10rem',left:"0rem",transform:"translateX(-50%) rotate(-90deg)", bgcolor:"white"}} aria-label='next'>
+        <Button variant="text" className=' ml-2' onClick={slidePrev}sx={{position:"absolute",top:'10rem',left:"0rem",transform:"translateX(-50%) rotate(-90deg)", bgcolor:"white"}} aria-label='next'>
             <KeyboardArrowLeftIcon sx={{transform:"rotate(90deg)",color:"black"}} />
         </Button>
         </div>

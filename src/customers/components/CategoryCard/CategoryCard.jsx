@@ -16,7 +16,7 @@ function CategoryCard() {
         height="140"
         image="/Images/Products/2.jpg"
       />
-      <div className='flex border-2'>
+      <div className='flex border-t-2'>
       <CardContent className='flex-grow'sx={{  py: 0}}>
         <p className='py-1 '> Earrings</p>
       </CardContent>
@@ -28,7 +28,7 @@ function CategoryCard() {
             textTransform: 'none',
             py: 0,
             
-          }}><ArrowForwardIosIcon className='mx-1'sx={{ fontSize: '0.7rem', color: 'black' ,py: 0}}/></Button>
+          }}><ArrowForwardIosIcon className='mx-1'sx={{ fontSize: '0.7rem', color: 'black' ,py: 0, color:'#808080'}}/></Button>
       </CardActions>
       </div>
     </Card>

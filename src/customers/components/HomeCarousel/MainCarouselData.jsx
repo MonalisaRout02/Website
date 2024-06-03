@@ -10,10 +10,6 @@ export const MainCarouselData = [
     {
         image:"./Images/3.png",
         path:""
-    },
-    {
-        image:"./Images/4.png",
-        path:""
     }
 ]
 
