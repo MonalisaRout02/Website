@@ -29,7 +29,7 @@ const Footer = () => {
           
           {/* Third Column: Logo */}
           <Grid item xs={12} md={4} className="flex justify-center items-center">
-            <img src="/Images/saptosi_logo.png" alt="Logo" className="h-16" />
+            <img src="saptosi_logo.png" alt="Logo" className="h-16" />
           </Grid>
         </Grid>
       </div>
