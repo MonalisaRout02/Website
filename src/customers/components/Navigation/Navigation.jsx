@@ -5,8 +5,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import Modal from '../Modal/Modal';
 
-function Navigation() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+function Navigation({ setCurrentView }) {
+  const [isSignedIn, setIsSignedIn] = useState(true);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -22,9 +22,11 @@ function Navigation() {
     };
   }, []);
 
-  const handleIconClick = () => {
+  const handleIconClick = (view) => {
     if (!isSignedIn) {
       setShowModal(true);
+    } else {
+      setCurrentView(view); // Set the current view based on the icon clicked
     }
   };
 
@@ -44,12 +46,12 @@ function Navigation() {
         <div className="container mx-auto flex items-center justify-between py-1 bg-stone-200">
           
           {/* Left Section: Logo and Title */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2" onClick={() => setCurrentView('home')}>
             <img src="saptosi_logo.png" alt="Logo" className="h-11 w-11 ml-4" />
             <div className="flex flex-col space-y-0">
-            <span className="text-xl font-cinzel-decorative font-semibold text-gray-800">Saptosi</span>
-            <span className="font-cinzel-decorative text-xs ml-3">Chain of Jewellers</span>
-          </div>
+              <span className="text-xl font-cinzel-decorative font-semibold text-gray-800">Saptosi</span>
+              <span className="font-cinzel-decorative text-xs ml-3">Chain of Jewellers</span>
+            </div>
           </div>
 
           {/* Center Section: Search Bar */}
@@ -82,13 +84,13 @@ function Navigation() {
               </>
             ) : (
               <>
-                <a href="#" className="text-gray-700 hover:text-gray-900">
+                <a href="#" className="text-gray-700 hover:text-gray-900" onClick={() => handleIconClick('wishlist')}>
                   <FavoriteBorderIcon />
                 </a>
-                <a href="#" className="text-gray-700 hover:text-gray-900">
+                <a href="#" className="text-gray-700 hover:text-gray-900" onClick={() => handleIconClick('cart')}>
                   <ShoppingCartIcon />
                 </a>
-                <a href="#" className="text-gray-700 hover:text-gray-900">
+                <a href="#" className="text-gray-700 hover:text-gray-900" onClick={() => handleIconClick('account')}>
                   <PersonIcon />
                 </a>
               </>
