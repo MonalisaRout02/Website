@@ -5,7 +5,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import Modal from '../Modal/Modal';
 
-function Navigation({ setCurrentView }) {
+function Navigation({ setCurrentView, setShowAccountModal}) {
   const [isSignedIn, setIsSignedIn] = useState(true);
   const [showModal, setShowModal] = useState(false);
 
@@ -26,7 +26,11 @@ function Navigation({ setCurrentView }) {
     if (!isSignedIn) {
       setShowModal(true);
     } else {
-      setCurrentView(view); // Set the current view based on the icon clicked
+      if (view === 'account') {
+        setShowAccountModal(true);
+      } else {
+        setCurrentView(view);
+      }
     }
   };
 

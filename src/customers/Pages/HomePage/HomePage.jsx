@@ -7,6 +7,7 @@ import CategoryGrid from '../../components/CategoryCard/CategoryGrid'
 import Banner1 from '../../components/Banners/Banner1'
 import HomeAbout from '../../components/HomeAbout/HomeAbout'
 import ChooseUs from '../../components/ChooseUs/ChooseUS'
+import ContactUs from '../../components/ContactUs/ContactUs'
 
 const HomePage = () => {
   return (
@@ -18,6 +19,7 @@ const HomePage = () => {
         <CategoryGrid sectionName1={"Categories"} />
         <HomeAbout />
         <ChooseUs ChooseHead={"Why Choose Us"}/>
+        <ContactUs SecName={"Contact Us"} />
       </div>
     </div>
   )
