@@ -20,6 +20,7 @@ function App() {
   ];
   
   const [currentView, setCurrentView] = useState('home'); // Default view
+  const [showAccountModal, setShowAccountModal] = useState(false); // State for showing account modal
 
   const renderContent = () => {
     switch (currentView) {
@@ -27,8 +28,6 @@ function App() {
         return <Wishlist />;
       case 'cart':
         return <Cart />;
-      case 'account':
-        return <Account />;
       default:
         return <HomePage />;
     }
@@ -37,11 +36,12 @@ function App() {
   return (
     <div className="">
       <NavHeader messages={messages} />
-      <Navigation setCurrentView={setCurrentView} />
+      <Navigation setCurrentView={setCurrentView} setShowAccountModal={setShowAccountModal} />
       <MegaMenu />
       <div>
-      {renderContent()}
+        {renderContent()}
       </div>
+        {showAccountModal && <Account showModal={showAccountModal} handleClose={() => setShowAccountModal(false)} />}
       <Footer />
     </div>
   );
