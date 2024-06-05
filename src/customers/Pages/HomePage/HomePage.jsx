@@ -5,6 +5,8 @@ import HomeSectionCarousel from '../../components/HomeSectionCarousel/HomeSectio
 import CategoryCard from '../../components/CategoryCard/CategoryCard'
 import CategoryGrid from '../../components/CategoryCard/CategoryGrid'
 import Banner1 from '../../components/Banners/Banner1'
+import HomeAbout from '../../components/HomeAbout/HomeAbout'
+import ChooseUs from '../../components/ChooseUs/ChooseUS'
 
 const HomePage = () => {
   return (
@@ -12,8 +14,10 @@ const HomePage = () => {
       <MainCarousel />
       <div  className='px-4 lg:px-8'>
         <HomeSectionCarousel  sectionName={"Featured Products"}/>
-        <Banner1 />
+        <Banner1 BannerHead={"Explore New Collections"}/>
         <CategoryGrid sectionName1={"Categories"} />
+        <HomeAbout />
+        <ChooseUs ChooseHead={"Why Choose Us"}/>
       </div>
     </div>
   )

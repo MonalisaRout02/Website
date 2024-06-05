@@ -28,7 +28,7 @@ const HomeSectionCarousel = ({sectionName}) => {
   return (
     
     <div className='px-4 lg:px-8'>
-      <h2 className='text-2xl  text-black py-4 text-center'>{sectionName}</h2>
+      <h2 className='text-3xl  text-black my-2  py-4 text-center'>{sectionName}</h2>
         <div className='relative p-5'>
 
         <AliceCarousel
