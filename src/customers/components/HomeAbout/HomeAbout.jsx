@@ -5,12 +5,12 @@ const HomeAbout = () => {
   return (
     <div className='flex justify-center my-20'>
         
-      <div className='flex w-[69%]'>
+      <div className='flex w-[76%]'>
         <div className='w-1/2'>
           <img src="/Images/HomeAbout.png" alt="About Us" className="image-with-animation"/>
         </div>
         <div className='w-1/2 pl-10'>
-          <h2 className="text-3xl text-black mb-4">About Us</h2>
+          <h2 className="text-3xl text-black mb-4 text-justify">About Us</h2>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos minus necessitatibus quasi nam nihil modi, delectus itaque fuga voluptatibus eius quod laboriosam hic dignissimos, asperiores consectetur officia unde iusto porro. Ipsam iste minima, odit facilis odio soluta tempore assumenda ea nesciunt rem eum in doloremque perferendis quia minus et, autem consectetur consequatur? Amet a porro quo pariatur, eum quos quibusdam.</p>
           <Button 
             variant='contained' 
