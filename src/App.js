@@ -8,6 +8,7 @@ import Footer from './customers/components/Footer/Footer'
 import Wishlist from './customers/Pages/Wishlist/Wishlist';
 import Cart from './customers/Pages/Cart/Cart';
 import Account from './customers/Pages/Account/Account';
+import AboutUs from './customers/Pages/AboutUs/AboutUs';
 
 
 function App() {
@@ -28,8 +29,9 @@ function App() {
         return <Wishlist />;
       case 'cart':
         return <Cart />;
+      
       default:
-        return <HomePage />;
+        return <AboutUs />;
     }
   };
 
