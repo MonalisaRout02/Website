@@ -6,7 +6,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import Modal from '../Modal/Modal';
 
 function Navigation({ setCurrentView, setShowAccountModal }) {
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {

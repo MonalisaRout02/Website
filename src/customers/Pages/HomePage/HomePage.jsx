@@ -9,7 +9,7 @@ import HomeAbout from '../../components/HomeAbout/HomeAbout'
 import ChooseUs from '../../components/ChooseUs/ChooseUS'
 import ContactUs from '../../components/ContactUs/ContactUs'
 
-const HomePage = () => {
+const HomePage = ({setCurrentView}) => {
   return (
     <div>
       <MainCarousel />
@@ -17,7 +17,7 @@ const HomePage = () => {
         <HomeSectionCarousel  sectionName={"Featured Products"}/>
         <Banner1 BannerHead={"Explore New Collections"}/>
         <CategoryGrid sectionName1={"Categories"} />
-        <HomeAbout />
+        <HomeAbout setCurrentView={setCurrentView}/>
         <ChooseUs ChooseHead={"Why Choose Us"}/>
         <ContactUs SecName={"Contact Us"} />
       </div>

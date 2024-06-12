@@ -29,9 +29,11 @@ function App() {
         return <Wishlist />;
       case 'cart':
         return <Cart />;
-      
-      default:
+      case 'aboutus':
         return <AboutUs />;
+      default:
+        // return <AboutUs />;
+        return <HomePage setCurrentView={setCurrentView}/>;
     }
   };
 
