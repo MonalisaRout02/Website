@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useRef} from 'react';
 
 export default function ContactUs({ SecName }) {
+  const whatsappRef = useRef(null);
+
   const handleClick = (imageId) => {
     switch (imageId) {
       case 'map':
         window.open('https://www.google.com/maps?q=Saptosi+Jewellers,+No+216,+4th+Floor,+4th+Cross,+Cubbonpet+Main+Rd,+Cubbonpete,+Bengaluru,+Karnataka+560002', '_blank');
         break;
       case 'whatsapp':
-        window.open('https://wa.me/918073069715', '_blank');
+        whatsappRef.current.click();
         break;
       case 'other':
         // Add the operation for the third image here
@@ -42,6 +44,13 @@ export default function ContactUs({ SecName }) {
           onClick={() => handleClick('whatsapp')}
         />
       </div>
+      <a
+        href="whatsapp://send?phone=918073069715"
+        ref={whatsappRef}
+        style={{ display: 'none' }}
+      >
+        Open WhatsApp
+      </a>
     </div>
   );
 }

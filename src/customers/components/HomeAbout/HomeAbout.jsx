@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import './HomeAbout.css';
-const HomeAbout = () => {
+const HomeAbout = ({setCurrentView}) => {
   return (
     <div className='flex justify-center my-20'>
         
@@ -22,6 +22,7 @@ const HomeAbout = () => {
                 backgroundColor: "#292524" 
               } 
             }}
+            onClick = {()=>setCurrentView('aboutus')}
           >
             About Us
           </Button>
