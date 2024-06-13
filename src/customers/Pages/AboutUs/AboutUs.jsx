@@ -76,7 +76,7 @@ const AboutUs = () => {
           </p>
         </div>
       </div>
-      <div className="container py-8 w-5/6 m-auto">
+      <div className="container py-8 w-3/4 m-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-1">
             {/* <!-- Container 1 --> */}
             <div className="p-6 transition-transform transform hover:-translate-y-2 duration-300 text-center">
@@ -95,7 +95,7 @@ const AboutUs = () => {
             <div className="p-6 transition-transform transform hover:-translate-y-2 duration-300 text-center">
             <div className="mb-4">
                 <img
-                src="./Images/AboutUs/customer_care.png"
+                src="./Images/AboutUs/low_price.png"
                 alt="Image 2"
                 className="transition-transform transform hover:-translate-y-2 duration-300 w-1/2 rounded-md mx-auto"
                 />
@@ -108,7 +108,7 @@ const AboutUs = () => {
             <div className="p-6 transition-transform transform hover:-translate-y-2 duration-300 text-center">
             <div className="mb-4">
                 <img
-                src="./Images/AboutUs/customer_care_bw.png"
+                src="./Images/AboutUs/happy_customers.png"
                 alt="Image 3"
                 className="transition-transform transform hover:-translate-y-2 duration-300 w-1/2 rounded-md mx-auto"
                 />
