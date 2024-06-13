@@ -1,9 +1,11 @@
 import React from 'react';
 import { Grid } from '@mui/material';
+import { Typography } from '@mui/material';
+import { Button } from '@mui/material';
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-8 w-full">
+    <footer className="bg-black text-white py-8 w-full text-center">
       <div className="w-full px-20">
         <Grid container className="px-20">
           
@@ -46,6 +48,25 @@ const Footer = () => {
         </Grid>
       </div>
     </footer>
+    
+    //    <div>
+    //     <Grid className='bg-black text-white text-center mt-10'
+    //     container
+    //     sx={{ background:"black",color:"white",py:3}}>
+
+    //       <Grid item xs={12} sm={6} md={3}>
+    //         <Typography className='pb-5' variant='h6'>Quick Links</Typography>
+    //         <Button className='pb-5' variant='h6' gutterBottom>About Us</Button>
+    //         <Button className='pb-5' variant='h6' gutterBottom>Shop Page</Button>
+    //         <Button className='pb-5' variant='h6' gutterBottom>Account</Button>
+    //         <Button className='pb-5' variant='h6' gutterBottom>Wishlist</Button>
+    //         <Button className='pb-5' variant='h6' gutterBottom>Cart</Button>
+    //       </Grid>
+
+    //     </Grid>
+    // </div>
+   
+   
   );
 }
 

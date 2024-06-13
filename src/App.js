@@ -9,6 +9,7 @@ import Wishlist from './customers/Pages/Wishlist/Wishlist';
 import Cart from './customers/Pages/Cart/Cart';
 import Account from './customers/Pages/Account/Account';
 import AboutUs from './customers/Pages/AboutUs/AboutUs';
+import Products from './customers/components/Products/Products';
 
 
 function App() {
@@ -33,7 +34,8 @@ function App() {
         return <AboutUs />;
       default:
         // return <AboutUs />;
-        return <HomePage setCurrentView={setCurrentView}/>;
+        // return <HomePage setCurrentView={setCurrentView}/>;
+        return <Products />
     }
   };
 
