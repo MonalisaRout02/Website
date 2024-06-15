@@ -15,7 +15,7 @@ const ChooseUs = ({ChooseHead}) => {
         <Paper className="grid-item" sx={{padding:"0"}}> 
           <img src="/Images/Choose/img1.jpg" alt="Image 1" className="grid-image1" />
           <div className="image-overlay">
-            <p>Text information for Image 1</p>
+            <p>In-House Manufacturing Facility</p>
           </div>
         </Paper>
       </Grid>
@@ -23,7 +23,7 @@ const ChooseUs = ({ChooseHead}) => {
         <Paper className="grid-item " sx={{padding:"0"}}>
           <img src="/Images/Choose/img2.jpg" alt="Image 2" className="grid-image1" />
           <div className="image-overlay">
-            <p>Text information for Image 2</p>
+            <p>Customization in Just 15 Days</p>
           </div>
         </Paper>
       </Grid>
@@ -33,7 +33,7 @@ const ChooseUs = ({ChooseHead}) => {
         <Paper className="grid-item" sx={{padding:"0"}}>
           <img src="/Images/Choose/img3.jpg" alt="Image 3" className="grid-image" />
           <div className="image-overlay">
-            <p>Text information for Image 3</p>
+            <p>Free Fashion Consultation</p>
           </div>
         </Paper>
       </Grid>
@@ -41,7 +41,7 @@ const ChooseUs = ({ChooseHead}) => {
         <Paper className="grid-item" sx={{padding:"0"}}>
           <img src="/Images/Choose/img4.jpg" alt="Image 4" className="grid-image" />
           <div className="image-overlay">
-            <p>Text information for Image 4</p>
+            <p>Exclusive Manufacturing Unit Tours</p>
           </div>
         </Paper>
       </Grid>
@@ -49,7 +49,7 @@ const ChooseUs = ({ChooseHead}) => {
         <Paper className="grid-item" sx={{padding:"0"}}>
           <img src="/Images/Choose/img5.jpg" alt="Image 5" className="grid-image" />
           <div className="image-overlay">
-            <p>Text information for Image 5</p>
+            <p>Free Purity Check and Valuation</p>
           </div>
         </Paper>
       </Grid>

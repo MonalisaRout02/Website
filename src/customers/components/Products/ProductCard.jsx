@@ -1,9 +1,10 @@
 import React from 'react';
 import './ProductsCard.css';
 
-const ProductCard = ({ product }) => {
+
+const ProductCard = ({ product , setCurrentView }) => {
   return (
-    <div className='productCard w-[14rem] m-3 transition-all cursor-pointer border border-stone-200 shadow-lg rounded-lg overflow-hidden'>
+    <div onClick ={()=> setCurrentView('SingleProduct') } className='productCard w-[14rem] m-3 transition-all cursor-pointer border border-stone-200 shadow-lg rounded-lg overflow-hidden'>
       <div className='h-[15rem]'>
         <img className="h-full w-full object-cover" src={product.imageUrl} alt={product.name} />
       </div>

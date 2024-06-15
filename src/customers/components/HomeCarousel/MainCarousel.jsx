@@ -18,7 +18,7 @@ const MainCarousel = () => {
         
         autoPlay
         autoPlayInterval={1000}
-        infinte
+        infinite
     />)
 }
 

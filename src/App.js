@@ -10,6 +10,7 @@ import Cart from './customers/Pages/Cart/Cart';
 import Account from './customers/Pages/Account/Account';
 import AboutUs from './customers/Pages/AboutUs/AboutUs';
 import Products from './customers/Pages/Product/Products';
+import SingleProduct from './customers/components/Products/SingleProduct';
 
 
 function App() {
@@ -34,17 +35,21 @@ function App() {
         return <Cart />;
       case 'aboutus':
         return <AboutUs />;
+      case 'Products':
+        return <Products setCurrentView={setCurrentView}/>;
+      case 'SingleProduct':
+        return <SingleProduct setCurrentView={setCurrentView}/>;
       default:
-        // return <HomePage setCurrentView={setCurrentView}/>;
-        return <Products />
+        // return <AboutUs />;
+        return <HomePage setCurrentView={setCurrentView}/>;
     }
   };
 
   return (
     <div className="">
       <NavHeader messages={messages} />
-      <Navigation setCurrentView={setCurrentView} setShowAccountModal={setShowAccountModal} setUserData={setUserData} isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>
-      <MegaMenu />
+      <Navigation setCurrentView={setCurrentView} setShowAccountModal={setShowAccountModal} />
+      <MegaMenu setCurrentView={setCurrentView}/>
       <div>
         {renderContent()}
       </div>
