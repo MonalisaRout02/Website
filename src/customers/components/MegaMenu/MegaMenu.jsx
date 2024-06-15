@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Tooltip from '../Tooltip/Tooltip';  // Adjust the import path as necessary
 
-function MegaMenu() {
+function MegaMenu({setCurrentView}) {
   const [hoveredText, setHoveredText] = useState(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
@@ -18,13 +18,14 @@ function MegaMenu() {
   return (
     <div className="bg-[#fffbf8] py-1 relative">
       <div className="container mx-auto flex justify-center space-x-8">
-        {['GOLD', 'DIAMOND', 'NECKLACE', 'RINGS', 'BESTSELLER', 'ALL JEWELLERY', 'COLLECTIONS', 'WEDDING', 'GIFTING'].map((item) => (
+        {['HARAA',, 'NECKLACE', 'RINGS', 'SETS', 'BANGLES', 'EARRINGS', 'GOLD WAISTBELT'].map((item) => (
           <a
             key={item}
             href="#"
             className="text-gray-700 hover:text-gray-900 text-sm font-roboto font-semibold relative"
-            onMouseEnter={(e) => handleMouseEnter(e, item)}
-            onMouseLeave={handleMouseLeave}
+            // onMouseEnter={(e) => handleMouseEnter(e, item)}
+            // onMouseLeave={handleMouseLeave}
+            onClick={() => setCurrentView('Products')}
           >
             {item}
             {hoveredText === item && (

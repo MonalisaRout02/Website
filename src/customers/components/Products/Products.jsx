@@ -3,12 +3,12 @@ import ProductCard from './ProductCard'; // Assuming you have a ProductCard comp
 import productsData from './ProductsData'; // Import your sample product data
 import FilterSidebar from './FilterSidebar'; // Import the FilterSidebar component
 
-const Products = () => {
+const Products = ({setCurrentView}) => {
 
   
   const renderProductCards = () => {
     return productsData.map((product) => (
-      <ProductCard key={product.id} product={product} />
+      <ProductCard setCurrentView={setCurrentView} key={product.id} product={product} />
     ));
   };
 
@@ -17,7 +17,7 @@ const Products = () => {
       {/* Filter Sidebar */}
       <FilterSidebar />
       {/* Product Grid */}
-      <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-4 gap-2 my-10 ">
+      <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-4 gap-2 my-5 ">
         {/* Render Product Cards */}
         {renderProductCards()}
       </div>
