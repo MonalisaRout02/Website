@@ -10,7 +10,7 @@ const FilterSidebar = () => {
 
   return (
   
-      <div className="md:col-span-1 bg-stone-100 p-4  py-10 rounded-lg sticky top-10 h-screen">
+      <div className="md:col-span-1 bg-stone-100 p-4 py-10 rounded-lg sticky top-10 h-screen">
       <h2 className="text-lg font-semibold mb-4">Filter Sidebar</h2>
       {/* Price Range Filter */}
       <div className="mb-4">

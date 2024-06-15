@@ -37,6 +37,46 @@ app.post('/create-account', async (req, res) => {
   }
 });
 
+// Route to fetch user details by phone number
+app.get('/get-user/:phoneNumber', async (req, res) => {
+  const { phoneNumber } = req.params;
+
+  try {
+    const result = await pool.query(
+      'SELECT * FROM users WHERE ph_no = $1',
+      [phoneNumber]
+    );
+    if (result.rows.length === 0) {
+      res.status(404).json({ error: 'User not found' });
+    } else {
+      res.status(200).json(result.rows[0]);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Route to update user details
+app.put('/update-user', async (req, res) => {
+  const { userName, phoneNumber, email, address } = req.body;
+
+  try {
+    const result = await pool.query(
+      'UPDATE users SET u_name = $1, email = $2, addr = $3 WHERE ph_no = $4 RETURNING *',
+      [userName, email, address, phoneNumber]
+    );
+    if (result.rows.length === 0) {
+      res.status(404).json({ error: 'User not found' });
+    } else {
+      res.status(200).json(result.rows[0]);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

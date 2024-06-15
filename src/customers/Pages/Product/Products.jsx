@@ -1,7 +1,7 @@
 import React from 'react';
-import ProductCard from './ProductCard'; // Assuming you have a ProductCard component
-import productsData from './ProductsData'; // Import your sample product data
-import FilterSidebar from './FilterSidebar'; // Import the FilterSidebar component
+import ProductCard from '../../components/Products/ProductCard'; // Assuming you have a ProductCard component
+import productsData from '../../components/Products/ProductsData'; // Import your sample product data
+import FilterSidebar from '../../components/Products/FilterSidebar'; // Import the FilterSidebar component
 
 const Products = ({setCurrentView}) => {
 
@@ -13,7 +13,7 @@ const Products = ({setCurrentView}) => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 ">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-full mx-0">
       {/* Filter Sidebar */}
       <FilterSidebar />
       {/* Product Grid */}

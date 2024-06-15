@@ -5,9 +5,18 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import Modal from '../Modal/Modal';
 
-function Navigation({ setCurrentView, setShowAccountModal }) {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+function Navigation({ setCurrentView, setShowAccountModal, setUserData, isSignedIn, setIsSignedIn }) {
+  
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      setIsSignedIn(true);
+    } else {
+      setIsSignedIn(false);
+    }
+  }, [setIsSignedIn]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -106,6 +115,8 @@ function Navigation({ setCurrentView, setShowAccountModal }) {
         showModal={showModal}
         handleClose={handleClose}
         handleRequestOtp={handleRequestOtp}
+        setUserData={setUserData}
+        setIsSignedIn={setIsSignedIn}
       />
     </div>
   );
