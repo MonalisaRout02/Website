@@ -9,7 +9,7 @@ import Wishlist from './customers/Pages/Wishlist/Wishlist';
 import Cart from './customers/Pages/Cart/Cart';
 import Account from './customers/Pages/Account/Account';
 import AboutUs from './customers/Pages/AboutUs/AboutUs';
-import Products from './customers/components/Products/Products';
+import Products from './customers/Pages/Product/Products';
 
 
 function App() {
@@ -23,6 +23,8 @@ function App() {
   
   const [currentView, setCurrentView] = useState('home'); // Default view
   const [showAccountModal, setShowAccountModal] = useState(false); // State for showing account modal
+  const [userData, setUserData] = useState(null);
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const renderContent = () => {
     switch (currentView) {
@@ -33,7 +35,6 @@ function App() {
       case 'aboutus':
         return <AboutUs />;
       default:
-        // return <AboutUs />;
         // return <HomePage setCurrentView={setCurrentView}/>;
         return <Products />
     }
@@ -42,12 +43,12 @@ function App() {
   return (
     <div className="">
       <NavHeader messages={messages} />
-      <Navigation setCurrentView={setCurrentView} setShowAccountModal={setShowAccountModal} />
+      <Navigation setCurrentView={setCurrentView} setShowAccountModal={setShowAccountModal} setUserData={setUserData} isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>
       <MegaMenu />
       <div>
         {renderContent()}
       </div>
-        {showAccountModal && <Account showModal={showAccountModal} handleClose={() => setShowAccountModal(false)} />}
+        {showAccountModal && <Account showModal={showAccountModal} userData={userData} handleClose={() => setShowAccountModal(false)} setIsSignedIn={setIsSignedIn} setUserData={setUserData}/>}
       <Footer />
     </div>
   );

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
-import { auth } from '../../../firebase.config'; 
+import { RecaptchaVerifier, signInWithPhoneNumber, PhoneAuthProvider, signInWithCredential } from 'firebase/auth';
+import { auth } from '../../../firebase.config';
 
-function CreateAccountModal() {
+function CreateAccountModal({ onSignIn }) {
   const [userName, setUserName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
@@ -14,6 +14,8 @@ function CreateAccountModal() {
   const [otpSent, setOtpSent] = useState(false);
   const [otpError, setOtpError] = useState('');
   const [otpMessage, setOtpMessage] = useState('');
+  const [isPhoneVerified, setIsPhoneVerified] = useState(false);
+  const [accountMessage, setAccountMessage] = useState('');
 
   useEffect(() => {
     setupRecaptcha();
@@ -40,12 +42,10 @@ function CreateAccountModal() {
       window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
         'size': 'invisible',
         'callback': (response) => {
-          // reCAPTCHA solved, allow getOTP
           handleGetOtp();
         },
         'expired-callback': () => {
-          // Reset the reCAPTCHA
-          window.recaptchaVerifier.render().then(function(widgetId) {
+          window.recaptchaVerifier.render().then(function (widgetId) {
             window.grecaptcha.reset(widgetId);
           });
         }
@@ -54,20 +54,20 @@ function CreateAccountModal() {
   };
 
   const handleGetOtp = () => {
-  const formattedPhoneNumber = `+${phoneNumber}`; // Ensure phoneNumber includes country code
-  setupRecaptcha();
-  const appVerifier = window.recaptchaVerifier;
-  signInWithPhoneNumber(auth, formattedPhoneNumber, appVerifier)
-    .then((confirmationResult) => {
-      setVerificationId(confirmationResult.verificationId);
-      setOtpSent(true);
-      setOtpError('');
-      setOtpMessage('OTP sent successfully.');
-    }).catch((error) => {
-      console.error("SMS not sent", error);
-      setOtpError('Error sending OTP. Please try again.');
-      setOtpMessage('');
-    });
+    const formattedPhoneNumber = `+${phoneNumber}`; // Ensure phoneNumber includes country code
+    setupRecaptcha();
+    const appVerifier = window.recaptchaVerifier;
+    signInWithPhoneNumber(auth, formattedPhoneNumber, appVerifier)
+      .then((confirmationResult) => {
+        setVerificationId(confirmationResult.verificationId);
+        setOtpSent(true);
+        setOtpError('');
+        setOtpMessage('OTP sent successfully.');
+      }).catch((error) => {
+        console.error("SMS not sent", error);
+        setOtpError('Error sending OTP. Please try again.');
+        setOtpMessage('');
+      });
   };
 
   const handleVerifyOtp = async () => {
@@ -75,19 +75,19 @@ function CreateAccountModal() {
       if (!verificationId || !otp) {
         throw new Error('Verification ID or OTP is missing.');
       }
-      
-      const credential = auth.PhoneAuthProvider.credential(verificationId, otp);
-      const result = await auth.signInWithCredential(credential);
+
+      const credential = PhoneAuthProvider.credential(verificationId, otp);
+      const result = await signInWithCredential(auth, credential);
       console.log('Phone number verified:', result.user);
       setOtpMessage('Phone number verified successfully.');
-      handleSubmit(); // Now you can handle form submission
+      setIsPhoneVerified(true); // Set phone number as verified
+      setOtpError(''); // Clear any OTP errors
     } catch (error) {
       console.error("OTP verification failed", error);
       setOtpError('Invalid OTP. Please enter the correct OTP.');
       setOtpMessage('');
     }
   };
-  
 
   const handleSubmit = async () => {
     try {
@@ -97,8 +97,10 @@ function CreateAccountModal() {
         email,
       });
       console.log('User created:', response.data);
+      setAccountMessage('Account created successfully.');
     } catch (error) {
       console.error('There was an error creating the account:', error);
+      setAccountMessage('Error creating the account.');
     }
   };
 
@@ -119,7 +121,7 @@ function CreateAccountModal() {
         className="w-full py-2 px-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-100"
       />
       <PhoneInput
-        country={'us'}
+        country={'in'}
         value={phoneNumber}
         onChange={handlePhoneNumberChange}
         inputProps={{
@@ -158,8 +160,8 @@ function CreateAccountModal() {
           >
             Verify OTP
           </button>
-          <p className="text-sm text-green-500 mt-2">{otpMessage}</p>
-          <p className="text-sm text-red-500 mt-2">{otpError}</p>
+          <p className="text-sm text-green-500 mt-1">{otpMessage}</p>
+          <p className="text-sm text-red-500 mt-1">{otpError}</p>
         </>
       ) : (
         <button
@@ -171,10 +173,19 @@ function CreateAccountModal() {
       )}
       <button
         onClick={handleSubmit}
-        className="w-full py-2 px-4 bg-stone-500 text-white rounded-md hover:bg-stone-600"
+        className={`w-full py-2 px-4 rounded-md mt-0 text-white ${isPhoneVerified ? 'bg-stone-500 hover:bg-stone-600' : 'bg-gray-300 cursor-not-allowed'}`}
+        disabled={!isPhoneVerified}
       >
         Create Account
       </button>
+      {accountMessage && (
+        <div className="mt-1">
+          <p className="text-sm text-green-500">{accountMessage}</p>
+          {accountMessage.includes('successfully') && (
+            <a href="#" onClick={onSignIn} className="text-stone-500 hover:underline">Sign In</a>
+          )}
+        </div>
+      )}
       <div id="recaptcha-container"></div>
     </>
   );
