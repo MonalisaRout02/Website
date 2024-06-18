@@ -43,16 +43,15 @@ function Navigation({ setCurrentView, setShowAccountModal, setUserData, isSigned
     }
   };
 
-  const handleRequestOtp = (phoneNumber) => {
-    console.log(`Request OTP for phone number: ${phoneNumber}`);
-    // Add your logic to request an OTP here
-    setShowModal(false);
-  };
-
   const handleClose = () => {
     setShowModal(false);
   };
 
+  const handleSignIn = () => {
+    setShowModal(false);
+    setShowAccountModal(true); // Show Account component after successful sign-in
+  };
+  
   return (
     <div className="sticky top-0 z-10 w-full">
       <nav className="bg-white sticky top-0 z-10 w-full">
@@ -114,9 +113,9 @@ function Navigation({ setCurrentView, setShowAccountModal, setUserData, isSigned
       <Modal 
         showModal={showModal}
         handleClose={handleClose}
-        handleRequestOtp={handleRequestOtp}
         setUserData={setUserData}
         setIsSignedIn={setIsSignedIn}
+        onSignIn={handleSignIn}
       />
     </div>
   );
