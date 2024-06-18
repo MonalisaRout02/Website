@@ -48,7 +48,7 @@ function App() {
   return (
     <div className="">
       <NavHeader messages={messages} />
-      <Navigation setCurrentView={setCurrentView} setShowAccountModal={setShowAccountModal} />
+      <Navigation setCurrentView={setCurrentView} setUserData={setUserData} setShowAccountModal={setShowAccountModal} isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>
       <MegaMenu setCurrentView={setCurrentView}/>
       <div>
         {renderContent()}
