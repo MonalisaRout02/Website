@@ -30,9 +30,9 @@ function App() {
   const renderContent = () => {
     switch (currentView) {
       case 'wishlist':
-        return <Wishlist />;
+        return <Wishlist userData={userData} />;
       case 'cart':
-        return <Cart />;
+        return <Cart userData={userData}/>;
       case 'aboutus':
         return <AboutUs />;
       case 'Products':
