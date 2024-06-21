@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import './FilterSidebar.css'; // Import your custom CSS file
 
-const FilterSidebar = () => {
+const FilterSidebar = ({setCategory}) => {
   const [priceRange, setPriceRange] = useState(500); // Initial value set to 500
 
   const handlePriceChange = (e) => {
     setPriceRange(e.target.value);
   };
+
+  function handleApply(setCategory) {
+    const selectedValue = document.getElementById('categoryFilter').value;
+    setCategory(selectedValue)
+  }
 
   return (
   
@@ -32,16 +37,18 @@ const FilterSidebar = () => {
       <div className="mb-4">
         <label htmlFor="categoryFilter" className="block text-sm font-medium text-gray-700 mb-2">Category</label>
         <select id="categoryFilter" name="categoryFilter" className="block w-full">
-          <option value="">All Categories</option>
-          <option value="category1">Necklace</option>
-          <option value="category2">Sets</option>
-          <option value="category1">Bangles</option>
-          <option value="category2">Rings</option>
-          <option value="category1">Kada</option>
-       
-          {/* Add more options as needed */}
+          <option value="All">All Categories</option>
+          <option value="Necklace">Necklace</option>
+          <option value="Sets">Sets</option>
+          <option value="Bangles">Bangles</option>
+          <option value="Rings">Rings</option>
+          <option value="Kada">Kada</option>
+        {/* Add more options as needed */}
         </select>
       </div>
+      <button 
+      onClick={()=>{handleApply(setCategory)}}
+      className='bg-stone-600 text-white py-1 px-6 rounded-sm' >Apply</button>
       {/* Add more filters as needed */}
     </div>
     

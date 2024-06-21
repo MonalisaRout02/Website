@@ -1,21 +1,21 @@
 import React from 'react'
 
-const SingleProduct = () => {
+const SingleProduct = ({ product }) => {
   return (
     <div className='max-w-7xl mx-auto  p-6'>
       <div className='flex flex-col justify-between lg:flex-row p-4 border border-stone-200 gap-14'>
       <div className='flex-shrink-0 '>
-          <img className=' object-cover' src="/Images/Products/product1.png" alt="Product Image" style={{height:"470px"}} />
+          <img className='object-cover' src={product.image} alt="Product" style={{height:"470px"}} />
         </div>
         <div className='flex flex-col gap-8 bg-stone-100 p-5'>
           <div>
-          <span className='text-stone-600 font-semibold'>Product Category</span>
-          <h1 className='text-3xl font-bold pt-2'>Product Name</h1>
+          <span className='text-stone-600 font-semibold'>{product.p_category}</span>
+          <h1 className='text-3xl font-bold pt-2'>{product.p_name}</h1>
           </div>
           <p className='text-gray-600'>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa, iusto? Cum numquam ipsam maiores! Aperiam voluptates obcaecati maiores vero cupiditate ipsum, culpa, reiciendis fuga quis illum laboriosam excepturi molestiae pariatur.
           </p>
-          <h6 className='text-2xl font-semibold'>Price</h6>
+          <h6 className='text-2xl font-semibold'>{product.p_weight}</h6>
           <p>gms</p>
           <div className='flex flex-row items-center gap-14'>
             <div className='flex flex-row items-center'>

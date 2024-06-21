@@ -10,13 +10,14 @@ function Navigation({ setCurrentView, setShowAccountModal, setUserData, isSigned
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const userData = localStorage.getItem('userData');
-    if (userData) {
+    const localUserData = localStorage.getItem('userData');
+    if (localUserData) {
       setIsSignedIn(true);
+      setUserData(localUserData)
     } else {
       setIsSignedIn(false);
     }
-  }, [setIsSignedIn]);
+  }, [setIsSignedIn, setUserData]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {

@@ -77,6 +77,184 @@ app.put("/update-user", async (req, res) => {
   }
 });
 
+app.get('/api/wishlist/:userId', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    // Fetch wishlist items
+    const wishlistQuery = 'SELECT p_id FROM wishlist WHERE u_id = $1';
+    const wishlistResult = await pool.query(wishlistQuery, [userId]);
+    const productIds = wishlistResult.rows.map(row => row.p_id);
+
+    if (productIds.length === 0) {
+      return res.json([]);
+    }
+
+    // Fetch product details
+    const productQuery = `
+      SELECT p_id, p_name, p_category, p_weight, p_image_id
+      FROM product
+      WHERE p_id = ANY($1::int[])
+    `;
+    const productResult = await pool.query(productQuery, [productIds]);
+    const products = productResult.rows;
+
+    // Fetch image details
+    const imageIds = products.map(product => product.p_image_id);
+    const imageQuery = `
+      SELECT id, file_name, file_data
+      FROM image
+      WHERE id = ANY($1::int[])
+    `;
+    const imageResult = await pool.query(imageQuery, [imageIds]);
+    const images = imageResult.rows;
+
+    // Map products to their images
+    const productsWithImages = products.map(product => {
+      const image = images.find(img => img.id === product.p_image_id);
+      return {
+        ...product,
+        image: image ? `data:image/jpeg;base64,${image.file_data.toString('base64')}` : null,
+      };
+    });
+    
+    res.json(productsWithImages);
+  } catch (error) {
+    console.error('Error fetching wishlist:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/api/cart/:userId', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    // Fetch cart items
+    const cartQuery = 'SELECT p_id FROM cart WHERE u_id = $1';
+    const cartResult = await pool.query(cartQuery, [userId]);
+    const productIds = cartResult.rows.map(row => row.p_id);
+
+    if (productIds.length === 0) {
+      return res.json([]);
+    }
+
+    // Fetch product details
+    const productQuery = `
+      SELECT p_id, p_name, p_category, p_weight, p_image_id
+      FROM product
+      WHERE p_id = ANY($1::int[])
+    `;
+    const productResult = await pool.query(productQuery, [productIds]);
+    const products = productResult.rows;
+
+    // Fetch image details
+    const imageIds = products.map(product => product.p_image_id);
+    const imageQuery = `
+      SELECT id, file_name, file_data
+      FROM image
+      WHERE id = ANY($1::int[])
+    `;
+    const imageResult = await pool.query(imageQuery, [imageIds]);
+    const images = imageResult.rows;
+
+    // Map products to their images
+    const productsWithImages = products.map(product => {
+      const image = images.find(img => img.id === product.p_image_id);
+      return {
+        ...product,
+        image: image ? `data:image/jpeg;base64,${image.file_data.toString('base64')}` : null,
+      };
+    });
+    
+    res.json(productsWithImages);
+  } catch (error) {
+    console.error('Error fetching wishlist:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Route to delete item from wishlist by userId and productId
+app.delete("/api/wishlist/:userId/:productId", async (req, res) => {
+  const { userId, productId } = req.params;
+
+  try {
+    // Perform DELETE operation
+    const deleteQuery = "DELETE FROM wishlist WHERE u_id = $1 AND p_id = $2";
+    await pool.query(deleteQuery, [userId, productId]);
+
+    res.status(200).json({ message: "Item deleted from wishlist successfully" });
+  } catch (error) {
+    console.error("Error deleting item from wishlist:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Route to delete item from cart by userId and productId
+app.delete("/api/cart/:userId/:productId", async (req, res) => {
+  const { userId, productId } = req.params;
+
+  try {
+    // Perform DELETE operation
+    const deleteQuery = "DELETE FROM cart WHERE u_id = $1 AND p_id = $2";
+    await pool.query(deleteQuery, [userId, productId]);
+
+    res.status(200).json({ message: "Item deleted from wishlist successfully" });
+  } catch (error) {
+    console.error("Error deleting item from wishlist:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Route to fetch products by category
+app.get('/api/products/:category', async (req, res) => {
+  const { category } = req.params;
+  const normalizedCategory = category.charAt(0) + category.slice(1).toLowerCase(); // Capitalize the first letter
+
+  try {
+    // Fetch product details by category
+    console.log((normalizedCategory=='All'))
+    let productQuery
+    if (normalizedCategory == 'All'){
+        productQuery = `
+         SELECT p_id, p_name, p_category, p_weight, p_image_id
+        FROM product`;
+    }
+    else{
+      productQuery = `
+        SELECT p_id, p_name, p_category, p_weight, p_image_id
+        FROM product
+        WHERE LOWER(p_category) = LOWER($1)
+      `;
+    }
+    const productResult = await pool.query(productQuery, [normalizedCategory]);
+    const products = productResult.rows;
+
+    // Fetch image details
+    const imageIds = products.map(product => product.p_image_id);
+    const imageQuery = `
+      SELECT id, file_name, file_data
+      FROM image
+      WHERE id = ANY($1::int[])
+    `;
+    const imageResult = await pool.query(imageQuery, [imageIds]);
+    const images = imageResult.rows;
+
+    // Map products to their images
+    const productsWithImages = products.map(product => {
+      const image = images.find(img => img.id === product.p_image_id);
+      return {
+        ...product,
+        image: image ? `data:image/jpeg;base64,${image.file_data.toString('base64')}` : null,
+      };
+    });
+    
+    res.json(productsWithImages);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
