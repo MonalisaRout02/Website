@@ -204,6 +204,56 @@ app.delete("/api/cart/:userId/:productId", async (req, res) => {
   }
 });
 
+// Route to fetch products by category
+app.get('/api/products/:category', async (req, res) => {
+  const { category } = req.params;
+  const normalizedCategory = category.charAt(0) + category.slice(1).toLowerCase(); // Capitalize the first letter
+
+  try {
+    // Fetch product details by category
+    console.log((normalizedCategory=='All'))
+    let productQuery
+    if (normalizedCategory == 'All'){
+        productQuery = `
+         SELECT p_id, p_name, p_category, p_weight, p_image_id
+        FROM product`;
+    }
+    else{
+      productQuery = `
+        SELECT p_id, p_name, p_category, p_weight, p_image_id
+        FROM product
+        WHERE LOWER(p_category) = LOWER($1)
+      `;
+    }
+    const productResult = await pool.query(productQuery, [normalizedCategory]);
+    const products = productResult.rows;
+
+    // Fetch image details
+    const imageIds = products.map(product => product.p_image_id);
+    const imageQuery = `
+      SELECT id, file_name, file_data
+      FROM image
+      WHERE id = ANY($1::int[])
+    `;
+    const imageResult = await pool.query(imageQuery, [imageIds]);
+    const images = imageResult.rows;
+
+    // Map products to their images
+    const productsWithImages = products.map(product => {
+      const image = images.find(img => img.id === product.p_image_id);
+      return {
+        ...product,
+        image: image ? `data:image/jpeg;base64,${image.file_data.toString('base64')}` : null,
+      };
+    });
+    
+    res.json(productsWithImages);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
