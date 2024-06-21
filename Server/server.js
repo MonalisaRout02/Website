@@ -212,9 +212,9 @@ app.get('/api/products/:category', async (req, res) => {
 
   try {
     // Fetch product details by category
-    console.log((normalizedCategory=='All'))
+    console.log((normalizedCategory ==='All'))
     let productQuery
-    if (normalizedCategory == 'All'){
+    if (normalizedCategory === 'All'){
         productQuery = `
          SELECT p_id, p_name, p_category, p_weight, p_image_id
         FROM product`;
