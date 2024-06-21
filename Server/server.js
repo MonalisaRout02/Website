@@ -17,9 +17,10 @@ const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "SaptosiDB",
-  password: "root123",
+  password: "#Taylor@13",
   port: 5432,
 });
+
 
 // Route to handle account creation
 app.post("/create-account", async (req, res) => {

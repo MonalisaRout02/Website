@@ -8,7 +8,7 @@ import Banner1 from '../../components/Banners/Banner1'
 import HomeAbout from '../../components/HomeAbout/HomeAbout'
 import ChooseUs from '../../components/ChooseUs/ChooseUS'
 import ContactUs from '../../components/ContactUs/ContactUs'
-
+import Banner2 from '../../components/Banners/Banners2'
 const HomePage = ({setCurrentView}) => {
   return (
     <div>
@@ -19,6 +19,7 @@ const HomePage = ({setCurrentView}) => {
         <CategoryGrid sectionName1={"Categories"} />
         <HomeAbout setCurrentView={setCurrentView}/>
         <ChooseUs ChooseHead={"Why Choose Us"}/>
+        <Banner2 BannerHead={"Customize Jewellery"}/>
         <ContactUs SecName={"Contact Us"} />
       </div>
     </div>
