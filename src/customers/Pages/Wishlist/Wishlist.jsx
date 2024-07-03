@@ -12,7 +12,7 @@ export default function Wishlist( {userData}) {
     const fetchWishlist = async () => {
     
       try {
-        const response = await axios.get(`http://localhost:5000/api/wishlist/${u_id}`);
+        const response = await axios.get(`http://localhost:5000/wishlist/get-wishlist/${u_id}`);
         setWishlistItems(response.data);
         setLoading(false);
       } catch (error) {
@@ -25,7 +25,7 @@ export default function Wishlist( {userData}) {
 
   const handleDeleteItem = async (itemId) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/wishlist/${u_id}/${itemId}`);
+      const response = await axios.delete(`http://localhost:5000/wishlist/delete-item/${u_id}/${itemId}`);
       if (response.status === 200) {
         // Update wishlistItems after successful delete
         const updatedWishlist = wishlistItems.filter(item => item.p_id !== itemId);
@@ -82,7 +82,7 @@ export default function Wishlist( {userData}) {
                 <div className='pl-3 pr-5'>
                   <h2 className="text-xl font-medium">{item.p_name}</h2>
                   <p className="text-sm text-stone-700">Category: {item.p_category}</p>
-                  <p className="text-sm text-stone-700">Weight: {item.p_weight}</p>
+                  <p className="text-sm text-stone-700">Weight: {item.p_weight} gms</p>
                 </div>
               </div>
             ))}

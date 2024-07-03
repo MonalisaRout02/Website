@@ -91,7 +91,7 @@ function CreateAccountModal({ onSignIn }) {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/create-account', {
+      const response = await axios.post('http://localhost:5000/users/create-account', {
         userName,
         phoneNumber,
         email,

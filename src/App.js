@@ -28,6 +28,9 @@ function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [category, setCategory] = useState('');
   const [product, setProduct] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
 
   const renderContent = () => {
     switch (currentView) {
@@ -38,9 +41,9 @@ function App() {
       case 'aboutus':
         return <AboutUs />;
       case 'Products':
-        return <Products setCurrentView={setCurrentView} category={category} setCategory={setCategory} setProduct={setProduct} />;
+        return <Products setCurrentView={setCurrentView} category={category} setCategory={setCategory} setProduct={setProduct} userData={userData} setShowModal={setShowModal} isFavorite={isFavorite} setIsFavorite={setIsFavorite} />;
       case 'SingleProduct':
-        return <SingleProduct setCurrentView={setCurrentView} product={product} />;
+        return <SingleProduct setCurrentView={setCurrentView} product={product} setShowModal={setShowModal} isFavorite={isFavorite} setIsFavorite={setIsFavorite} userData={userData} />;
       default:
         // return <AboutUs />;
         return <HomePage setCurrentView={setCurrentView}/>;
@@ -50,8 +53,8 @@ function App() {
   return (
     <div className="">
       <NavHeader messages={messages} />
-      <Navigation setCurrentView={setCurrentView} setUserData={setUserData} setShowAccountModal={setShowAccountModal} isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}/>
-      <MegaMenu setCurrentView={setCurrentView} setCategory={setCategory}/>
+      <Navigation setCurrentView={setCurrentView} setUserData={setUserData} setShowAccountModal={setShowAccountModal} isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} showModal={showModal} setShowModal={setShowModal} />
+      <MegaMenu setCurrentView={setCurrentView} setCategory={setCategory} showModal={showModal} setShowModal={setShowModal} />
       <div>
         {renderContent()}
       </div>

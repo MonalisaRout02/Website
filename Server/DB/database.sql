@@ -41,9 +41,11 @@ CREATE TABLE wishlist(
 );
 
 --cart table--
-CREATE TABLE cart(
-	u_id INTEGER NOT NULL REFERENCES users(u_id),
-	p_id INTEGER NOT NULL REFERENCES product(p_id)
+CREATE TABLE cart (
+    u_id INTEGER NOT NULL REFERENCES users(u_id),
+    p_id INTEGER NOT NULL REFERENCES product(p_id),
+    quantity INTEGER,
+    CONSTRAINT pk_cart PRIMARY KEY (u_id, p_id)
 );
 
 --rating table--

@@ -11,7 +11,7 @@ export default function Cart({userData}) {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/cart/${u_id}`);
+        const response = await axios.get(`http://localhost:5000/cart/get-cart/${u_id}`);
         setCartItems(response.data);
         setLoading(false);
       } catch (error) {
@@ -24,7 +24,7 @@ export default function Cart({userData}) {
 
   const handleDeleteItem = async (itemId) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/cart/${u_id}/${itemId}`);
+      const response = await axios.delete(`http://localhost:5000/cart/delete-item/${u_id}/${itemId}`);
       if (response.status === 200) {
         // Update cartItems after successful delete
         const updatedCart = cartItems.filter(item => item.p_id !== itemId);
@@ -82,7 +82,8 @@ export default function Cart({userData}) {
                 <div className="pl-3 pr-5">
                   <h2 className="text-xl font-medium">{item.p_name}</h2>
                   <p className="text-sm text-stone-700">Category: {item.p_category}</p>
-                  <p className="text-sm text-stone-700">Weight: {item.p_weight}</p>
+                  <p className="text-sm text-stone-700">Weight: {item.p_weight} gms</p>
+                  <p className="text-sm text-stone-700">Quantity: {item.quantity} </p>
                 </div>
               </div>
             ))}

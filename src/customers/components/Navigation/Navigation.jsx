@@ -5,11 +5,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import Modal from '../Modal/Modal';
 
-function Navigation({ setCurrentView, setShowAccountModal, setUserData, isSignedIn, setIsSignedIn }) {
+function Navigation({ setCurrentView, setShowAccountModal, setUserData, isSignedIn, setIsSignedIn, showModal, setShowModal }) {
   
-  const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
+    useEffect(() => {
     const localUserData = localStorage.getItem('userData');
     if (localUserData) {
       setIsSignedIn(true);

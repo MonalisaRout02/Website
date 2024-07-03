@@ -96,7 +96,7 @@ function Modal({ showModal, handleClose, onSignIn, setUserData, setIsSignedIn })
   const fetchUserDetails = async () => {
     try {
       // Replace with your API endpoint to fetch user details
-      const response = await axios.get(`http://localhost:5000/get-user/${phoneNumber}`);
+      const response = await axios.get(`http://localhost:5000/users/get-user/${phoneNumber}`);
       setUserData(response.data); // Update user data in parent component
       storeUserDataInLocalStorage(response.data); 
       onSignIn(); // Callback to notify successful sign-in
